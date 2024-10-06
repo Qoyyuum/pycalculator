@@ -53,19 +53,20 @@ class Calculator:
 			temp = s[3:]
 			temp.insert(0, result)
 			s = temp
+		self.to_calculate = to_calculate
 		self.result = result
 		
-	def getint(self, number):
+	def getfloat(self, number):
 		try:
-			num = int(number)
+			num = float(number)
 		except ValueError:
 			print("Invalid number, try again")
 			exit()
 		return num
 
 	def calculate(self, operator, number1, number2):
-		number1 = self.getint(number1)
-		number2 = self.getint(number2)
+		number1 = self.getfloat(number1)
+		number2 = self.getfloat(number2)
 
 		if operator == "+":
 			return self.add2numbers(number1, number2)
@@ -96,14 +97,9 @@ class Calculator:
 
 
 def main():
-	c = Calculator()
-	first_number = c.getint(input("First number: "))
-	second_number = c.getint(input("Second number: "))
-	operation = input("Type an operation [ '+', '-', '/', '*'] : ")
-	result = c.calculate(operation, first_number, second_number)
-	print(
-	 f"The result for {first_number} {operation} {second_number} is {result}")
-
+	user_calculation = input() # Example: 2*2/2+1
+	c = Calculator(user_calculation)
+	print(f"{c.to_calculate} = {c.result}")
 
 if __name__ == "__main__":
 	main()
